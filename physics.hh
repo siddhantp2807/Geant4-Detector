@@ -5,7 +5,6 @@
 #include "G4EmStandardPhysics.hh"
 #include "G4OpticalPhysics.hh"
 
-// Add includes for any additional hadronic physics processes you want to use
 
 class MyPhysicsList : public G4VModularPhysicsList
 {

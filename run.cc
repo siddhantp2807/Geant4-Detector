@@ -9,6 +9,7 @@ MyRunAction::MyRunAction()
     man->CreateNtupleDColumn("fX");
     man->CreateNtupleDColumn("fY");
     man->CreateNtupleDColumn("fZ");
+    man->CreateNtupleDColumn("fEnergyDeposit"); 
     man->FinishNtuple(0);
 }
 
