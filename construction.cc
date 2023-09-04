@@ -39,9 +39,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
     G4RotationMatrix* rotationMatrix = new G4RotationMatrix();
 
     rotationMatrix->rotateZ(90.*deg);
-    
 
-// layer -1
+//  Geometry Construction.
 
 for (G4int i = 0; i < 19; ++i) {
     for (G4int j = 0; j < 11; ++j) {

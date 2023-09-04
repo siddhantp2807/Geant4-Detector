@@ -28,7 +28,10 @@ int main(int argc, char** argv)
 
 
   G4UIExecutive* ui = 0;
-  if ( argc == 1 ) { ui = new G4UIExecutive(argc, argv); }
+  if ( argc == 1 ) 
+  { 
+      ui = new G4UIExecutive(argc, argv); 
+  }
   
 
   G4VisManager* visManager = new G4VisExecutive;
