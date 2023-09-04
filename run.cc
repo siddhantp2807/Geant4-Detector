@@ -6,10 +6,14 @@ MyRunAction::MyRunAction()
 
     man->CreateNtuple("Hits", "Hits");
     man->CreateNtupleIColumn("fEvent");
+    man->CreateNtupleIColumn("fTrackID");
     man->CreateNtupleDColumn("fX");
     man->CreateNtupleDColumn("fY");
     man->CreateNtupleDColumn("fZ");
     man->CreateNtupleDColumn("fEnergyDeposit"); 
+    man->CreateNtupleSColumn("fParticleName");
+
+
     man->FinishNtuple(0);
 }
 
