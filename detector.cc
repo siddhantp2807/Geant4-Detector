@@ -18,12 +18,12 @@ G4bool MySensitiveDetector::ProcessHits(G4Step* aStep, G4TouchableHistory* ROhis
 
     G4double energyDeposit = aStep->GetTotalEnergyDeposit();
 
-    if (energyDeposit != 0.){
-        G4cout << "Hit in sensitive detector!" << G4endl;
-        G4cout << "Particle: " << track->GetDefinition()->GetParticleName() << G4endl;
-        G4cout << "Particle:-" << track->GetTrackID() << G4endl;
-        G4cout << "Energy Deposit: " << energyDeposit << " MeV" << G4endl;
-    };
+    // if (energyDeposit != 0.){
+    //     G4cout << "Hit in sensitive detector!" << G4endl;
+    //     G4cout << "Particle: " << track->GetDefinition()->GetParticleName() << G4endl;
+    //     G4cout << "Particle:-" << track->GetTrackID() << G4endl;
+    //     G4cout << "Energy Deposit: " << energyDeposit << " MeV" << G4endl;
+    // };
 
  
     G4int evt = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
