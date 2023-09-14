@@ -21,9 +21,13 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 
     G4Material *DetMat = nist->FindOrBuildMaterial("G4_Si");
-    G4Box *solidWorld = new G4Box("solidWorld", 1*m, 1*m, 1*m);
+    G4Box *solidWorld = new G4Box("solidWorld", 2.5*m, 2.5*m, 2.5*m);
+    G4Box *leadBox = new G4Box("leadBox", 1.45*m, 1.45*m, 2.5*cm);
+    G4Box *siliconBox = new G4Box("siliconBox", 10*cm, 10*cm, 0.15*cm);
     
     G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
+    G4LogicalVolume *leadLayer = new G4LogicalVolume(leadBox, PbWO4, "leadLayer");
+
     G4VPhysicalVolume *physWorld = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), logicWorld, "physWorld", 0, false, 0, true);
 
     // Create a hexagonal solid shape using G4Polyhedra
@@ -33,7 +37,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
     G4double rOuter[] = { 0.05*m, 0.05*m }; // Smaller radius for the hexagon
     G4Polyhedra *solidHexagon = new G4Polyhedra("solidHexagon", 0., 360.*deg, 6, numZPlanes, zPlanes, rInner, rOuter);
     
-    logicHexagon = new G4LogicalVolume(solidHexagon, PbWO4, "logicHexagon"); // Assign the value here
+    logicHexagon = new G4LogicalVolume(solidHexagon, DetMat, "logicHexagon"); // Assign the value here
 
     
     G4RotationMatrix* rotationMatrix = new G4RotationMatrix();
@@ -55,12 +59,14 @@ for (G4int i = 0; i < 19; ++i) {
     for (G4int j = 0; j < 11; ++j) {
         for (G4int k = 0; k<20; ++k){
             new G4PVPlacement( rotationMatrix, G4ThreeVector(95*cm-i*10*cm, (-90 + 15/sqrt(3))*cm + j*(30/sqrt(3))*cm  , 90*cm - k*(5)*cm), logicHexagon, "physHexagon", logicWorld, false, 0, true);
-
         }
        
     }
 }
 
+    for (G4int i = 0; i < 20; i++) {
+        new G4PVPlacement(rotationMatrix, G4ThreeVector(0*cm, 0*cm, 90*cm - i*(4)*cm), leadLayer, "physLeadLayer", logicWorld, false, 0, true);
+    }
 
     return physWorld;
 }
